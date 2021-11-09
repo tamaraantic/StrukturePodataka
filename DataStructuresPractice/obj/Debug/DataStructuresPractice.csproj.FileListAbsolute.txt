@@ -1,0 +1,7 @@
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\bin\Debug\DataStructuresPractice.exe.config
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\bin\Debug\DataStructuresPractice.exe
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\bin\Debug\DataStructuresPractice.pdb
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\obj\Debug\DataStructuresPractice.csprojAssemblyReference.cache
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\obj\Debug\DataStructuresPractice.csproj.CoreCompileInputs.cache
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\obj\Debug\DataStructuresPractice.exe
+C:\Users\Korisnik\source\repos\DataStructuresPractice\DataStructuresPractice\obj\Debug\DataStructuresPractice.pdb
