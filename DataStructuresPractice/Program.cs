@@ -5,88 +5,161 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
+
 namespace DataStructuresPractice
 {
+
     class Program
     {
         static void Main(string[] args)
         {
-
-            Pocetak:
-            Console.WriteLine("1.Testiraj niz.      2.Testiraj listu.     3.Testiraj hashset");
-            var choice = Console.ReadLine();
-            switch (choice)
-            {
-                case "1":
-                    MeasureArrayPerformance();
-                    break;
-                case "2":
-                    MeasureLinkedListPerformance();
-                    break;
-                case "3":
-                    MeasureHashsetPerformance();
-                    break;
-                default:
-                    Console.WriteLine("Izaberite broj 1-3!");
-                    goto Pocetak;
-                    break;
-            }
+            ArrayPerformanceTest apt=new ArrayPerformanceTest();
+            LinkedListPerformanceTest llpt = new LinkedListPerformanceTest();
+            HashsetPerformanceTest hpt = new HashsetPerformanceTest();
+            apt.ExecuteTest();
+            llpt.ExecuteTest();
+            hpt.ExecuteTest();
+          
         }
-
-        static void MeasureArrayPerformance()
+    }
+    static class Constants
+    {
+        public static int EL_NUM = 1000000;
+    }
+    class PerformanceTest
+    {
+        public PerformanceTest()
         {
-            //Dodavanje 1M elemenata u kolekciju.
-            int[] array = new int[1000000];
             var rand = new Random();
             Stopwatch timer = new Stopwatch();
-       
+        }
+        public Stopwatch timer;
+        public Random rand;
+
+        public virtual long ExecuteTest()
+        {
+            return 0;
+        }
+        public virtual long ExecuteTest(int el_num)
+        {
+            return 0;
+        }
+
+    }
+    class ArrayPerformanceTest : PerformanceTest
+    {
+        public ArrayPerformanceTest()
+        {
+            rand = new Random();
+            timer = new Stopwatch();
+        }
+        public override long ExecuteTest()
+        {
+            int[] array = new int[Constants.EL_NUM];
+
             timer.Start();
-            for (int i=0; i<1000000; i++)
+            for (int i = 0; i < Constants.EL_NUM; i++)
             {
                 array[i] = rand.Next();
             }
             timer.Stop();
 
             Console.WriteLine("Dodavanje 1M elemenata u niz je trajalo= " + timer.ElapsedMilliseconds.ToString() + "ms");
-            Console.ReadLine();
+           //Console.ReadLine();
+            return timer.ElapsedMilliseconds;
         }
+        public override long ExecuteTest(int el_num)
+        {
+            int[] array = new int[el_num];
 
-        static void MeasureLinkedListPerformance()
+            timer.Start();
+            for (int i = 0; i < el_num; i++)
+            {
+                array[i] = rand.Next();
+            }
+            timer.Stop();
+
+            Console.WriteLine("Dodavanje " + el_num + " elemenata u niz je trajalo= " + timer.ElapsedMilliseconds.ToString() + "ms");
+            //Console.ReadLine();
+            return timer.ElapsedMilliseconds;
+        }
+    }
+    class LinkedListPerformanceTest : PerformanceTest
+    {
+        public LinkedListPerformanceTest()
+        {
+            rand = new Random();
+            timer = new Stopwatch();
+        }
+        public override long ExecuteTest()
         {
             //Dodavanje 1M elemenata u kolekciju.
             LinkedList<int> lList = new LinkedList<int>();
-            var rand = new Random();
-            Stopwatch timer1 = new Stopwatch();
 
-            timer1.Start();
-            for (int i = 0; i < 1000000; i++)
+            timer.Start();
+            for (int i = 0; i < Constants.EL_NUM; i++)
             {
                 lList.AddLast(rand.Next());
             }
-            timer1.Stop();
+            timer.Stop();
 
-            Console.WriteLine("Dodavanje 1M elemenata u listu je trajalo= " + timer1.ElapsedMilliseconds.ToString() + "ms");
-            Console.ReadLine();
-
+            Console.WriteLine("Dodavanje 1M elemenata u listu je trajalo= " + this.timer.ElapsedMilliseconds.ToString() + "ms");
+            //Console.ReadLine();
+            return timer.ElapsedMilliseconds;
         }
-        static void MeasureHashsetPerformance()
+        public override long ExecuteTest(int el_num)
+        { 
+            LinkedList<int> lList = new LinkedList<int>();
+
+            timer.Start();
+            for (int i = 0; i < el_num; i++)
+            {
+                lList.AddLast(rand.Next());
+            }
+            timer.Stop();
+
+            Console.WriteLine("Dodavanje " + el_num + " elemenata u listu je trajalo= " + this.timer.ElapsedMilliseconds.ToString() + "ms");
+            //Console.ReadLine();
+            return timer.ElapsedMilliseconds;
+        }
+    }
+    class HashsetPerformanceTest : PerformanceTest
+    {
+        public HashsetPerformanceTest()
+        {
+            rand = new Random();
+            timer = new Stopwatch();
+        }
+        public override long ExecuteTest()
         {
             //Dodavanje 1M elemenata u kolekciju.
             HashSet<int> hash = new HashSet<int>();
-            var rand = new Random();
-            Stopwatch timer2 = new Stopwatch();
 
-            timer2.Start();
-            for (int i = 0; i < 1000000; i++)
+            timer.Start();
+            for (int i = 0; i < Constants.EL_NUM; i++)
             {
                 hash.Add(rand.Next());
             }
-            timer2.Stop();
+            timer.Stop();
 
-            Console.WriteLine("Dodavanje 1M elemenata u hashset je trajalo= " + timer2.ElapsedMilliseconds.ToString() + "ms");
+            Console.WriteLine("Dodavanje 1M elemenata u hashset je trajalo= " + timer.ElapsedMilliseconds.ToString() + "ms");
             Console.ReadLine();
+            return timer.ElapsedMilliseconds;
+        }
+        public override long ExecuteTest(int el_num)
+        {
+            HashSet<int> hash = new HashSet<int>();
 
+            timer.Start();
+            for (int i = 0; i < el_num; i++)
+            {
+                hash.Add(rand.Next());
+            }
+            timer.Stop();
+
+            Console.WriteLine("Dodavanje " + el_num +" elemenata u hashset je trajalo= "+ timer.ElapsedMilliseconds.ToString() + "ms");
+            Console.ReadLine();
+            return timer.ElapsedMilliseconds;
         }
     }
 }
-
